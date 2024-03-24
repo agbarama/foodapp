@@ -5,6 +5,7 @@ import Search from "./components/Search";
 import Container from "./components/Container";
 import InnerContainer from "./components/InnerContainer";
 import FoodList from "./components/FoodList";
+import FoodDetails from "./components/FoodDetails";
 
 function App() {
   const [foodData, setFoodData] = useState([]);
@@ -16,6 +17,9 @@ function App() {
       <Container>
         <InnerContainer>
           <FoodList foodData={foodData} setFoodId={setFoodId} />
+        </InnerContainer>
+        <InnerContainer>
+          <FoodDetails foodId={foodId} />
         </InnerContainer>
       </Container>
     </>
