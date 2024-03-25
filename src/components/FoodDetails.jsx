@@ -12,7 +12,7 @@ const FoodDetails = ({ foodId }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const URL = `https://api.spoonacular.com/recipes/${foodId}/information`;
-  const API_Key = "a7291dffeb224058bb95201b135c244a";
+  const API_Key = import.meta.env.VITE_SOME_KEY;
 
   useEffect(() => {
     async function fetchRecipe() {
