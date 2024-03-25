@@ -3,7 +3,9 @@ import styles from "../styles/search.module.css";
 
 const Search = ({ foodData, setFoodData }) => {
   const URL = "https://api.spoonacular.com/recipes/complexSearch";
-  const API_Key = import.meta.env.VITE_SOME_KEY;
+  const API_Key = process.env.API_KEY;
+
+  // const API_Key = import.meta.env.VITE_SOME_KEY;
 
   const [query, setQuery] = useState("pizza");
 
@@ -12,7 +14,7 @@ const Search = ({ foodData, setFoodData }) => {
       const res = await fetch(`${URL}?query=${query}&apiKey=${API_Key}`);
       const data = await res.json();
 
-      // set foodData state to data.results
+      // set foodData to data.results
       setFoodData(data.results);
     }
     fetchFood();
