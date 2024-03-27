@@ -1,24 +1,22 @@
 import { useEffect, useState } from "react";
 import styles from "../styles/search.module.css";
+import axios from "axios";
 
 const Search = ({ foodData, setFoodData }) => {
-  const URL = "https://api.spoonacular.com/recipes/complexSearch";
-
-  // const API_Key = process.env.API_KEY;
-
+  const [query, setQuery] = useState("pizza");
   const API_Key = import.meta.env.VITE_SOME_KEY;
 
-  const [query, setQuery] = useState("pizza");
-
   useEffect(() => {
-    async function fetchFood() {
-      const res = await fetch(`${URL}?query=${query}&apiKey=${API_Key}`);
-      const data = await res.json();
-
-      // set foodData to data.results
-      setFoodData(data.results);
-    }
-    fetchFood();
+    axios
+      .get(
+        `https://api.spoonacular.com/recipes/complexSearch?query=${query}&apiKey=${API_Key}`
+      )
+      .then((res) => {
+        setFoodData(res.data.results);
+      })
+      .catch((err) => {
+        console.error("Error fetching data:", err);
+      });
   }, [query]);
 
   return (
